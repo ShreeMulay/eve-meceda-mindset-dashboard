@@ -4,7 +4,7 @@ An interactive HTML dashboard summarizing Dr. Eve Meceda's Vistage presentation 
 
 ## Live Dashboard
 
-**[View the Interactive Dashboard](https://shreemoolay.github.io/eve-meceda-mindset-dashboard/Mindset_Changes_Everything_Dashboard.html)** (GitHub Pages)
+**[View the Interactive Dashboard](https://shreemulay.github.io/eve-meceda-mindset-dashboard/Mindset_Changes_Everything_Dashboard.html)** (GitHub Pages)
 
 ## About the Presentation
 
