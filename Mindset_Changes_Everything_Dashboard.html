@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindset Changes Everything - Dr. Eve Meceda | Interactive Dashboard</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            
+            /* Light theme */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            /* Fixed mindset colors */
+            --fixed-primary: #ef4444;
+            --fixed-secondary: #fecaca;
+            --fixed-bg: #fef2f2;
+            
+            /* Growth mindset colors */
+            --growth-primary: #10b981;
+            --growth-secondary: #a7f3d0;
+            --growth-bg: #ecfdf5;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+            
+            --fixed-bg: #451a1a;
+            --fixed-secondary: #7f1d1d;
+            --growth-bg: #14332a;
+            --growth-secondary: #065f46;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .theme-toggle:hover {
+            background: var(--border);
+        }
+        
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+        }
+        
+        /* Main content */
+        main {
+            margin-top: 60px;
+            padding-bottom: 80px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-speaker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-speaker-avatar {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .hero-speaker-info {
+            text-align: left;
+        }
+        
+        .hero-speaker-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .hero-speaker-title {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Section styles */
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .section-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .grid-3, .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* TL;DR Section */
+        .tldr {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tldr-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tldr-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .tldr-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .tldr-content {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        .tldr-content strong {
+            color: var(--text-primary);
+        }
+        
+        /* Mindset comparison */
+        .mindset-compare {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        
+        @media (max-width: 900px) {
+            .mindset-compare {
+                grid-template-columns: 1fr;
+            }
+            
+            .mindset-vs {
+                display: none;
+            }
+        }
+        
+        .mindset-card {
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+        }
+        
+        .mindset-card.fixed {
+            background: var(--fixed-bg);
+            border: 2px solid var(--fixed-primary);
+        }
+        
+        .mindset-card.growth {
+            background: var(--growth-bg);
+            border: 2px solid var(--growth-primary);
+        }
+        
+        .mindset-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mindset-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .mindset-card.fixed .mindset-icon {
+            background: var(--fixed-primary);
+        }
+        
+        .mindset-card.growth .mindset-icon {
+            background: var(--growth-primary);
+        }
+        
+        .mindset-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .mindset-card.fixed .mindset-card-title {
+            color: var(--fixed-primary);
+        }
+        
+        .mindset-card.growth .mindset-card-title {
+            color: var(--growth-primary);
+        }
+        
+        .mindset-belief {
+            background: rgba(0,0,0,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        [data-theme="dark"] .mindset-belief {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .mindset-belief-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+        
+        .mindset-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vs-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+        
+        /* Behavior list */
+        .behavior-list {
+            list-style: none;
+        }
+        
+        .behavior-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .behavior-item:last-child {
+            border-bottom: none;
+        }
+        
+        .behavior-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .mindset-card.fixed .behavior-number {
+            background: var(--fixed-secondary);
+            color: var(--fixed-primary);
+        }
+        
+        .mindset-card.growth .behavior-number {
+            background: var(--growth-secondary);
+            color: var(--growth-primary);
+        }
+        
+        .behavior-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .behavior-content p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Stats cards */
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        
+        /* Research data bars */
+        .research-bar {
+            margin-bottom: 1.5rem;
+        }
+        
+        .research-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .research-bar-label {
+            font-weight: 600;
+        }
+        
+        .research-bar-value {
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .research-bar-track {
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .research-bar-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 1s ease-out;
+        }
+        
+        .research-bar-fill.feedback {
+            background: linear-gradient(90deg, var(--success), var(--primary));
+            width: 78%;
+        }
+        
+        .research-bar-fill.experimentation {
+            background: linear-gradient(90deg, var(--info), var(--primary));
+            width: 77.8%;
+        }
+        
+        /* Levers section */
+        .lever-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .lever-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .lever-header:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .lever-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .lever-info {
+            flex: 1;
+        }
+        
+        .lever-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .lever-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .lever-toggle {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .lever-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+        }
+        
+        .lever-card.open .lever-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .lever-content {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            border-top: 1px solid var(--border);
+        }
+        
+        .lever-card.open .lever-content {
+            display: block;
+            padding-top: 1.5rem;
+        }
+        
+        /* Quote blocks */
+        .quote-block {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .quote-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-attribution {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        /* Feedback preferences */
+        .preference-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .preference-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .preference-category-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .preference-category-title {
+            font-weight: 600;
+        }
+        
+        .preference-questions {
+            list-style: none;
+        }
+        
+        .preference-questions li {
+            padding: 0.5rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Benefits grid */
+        .benefit-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .benefit-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .benefits-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        
+        /* Action items */
+        .action-list {
+            list-style: none;
+        }
+        
+        .action-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+        
+        .action-item:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .action-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .action-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .action-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+        
+        .action-content {
+            flex: 1;
+        }
+        
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .action-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .action-timeline {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.25rem;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Speaker bio */
+        .speaker-bio {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        @media (max-width: 768px) {
+            .speaker-bio {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        .speaker-avatar {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: 800;
+        }
+        
+        .speaker-details h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .speaker-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .credential-badge {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .speaker-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        /* The 211 Degrees */
+        .thermometer {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .thermometer-visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .temp-bar {
+            width: 60px;
+            background: var(--bg-tertiary);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .temp-bar.current {
+            height: 180px;
+        }
+        
+        .temp-bar.boiling {
+            height: 190px;
+        }
+        
+        .temp-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, var(--warning), var(--error));
+            border-radius: 30px;
+            transition: height 1s ease-out;
+        }
+        
+        .temp-bar.current .temp-fill {
+            height: 95%;
+        }
+        
+        .temp-bar.boiling .temp-fill {
+            height: 100%;
+        }
+        
+        .temp-label {
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+        
+        .temp-value {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Collapsible */
+        .collapsible {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+        
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .collapsible-header:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .collapsible-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .collapsible-icon {
+            transition: transform 0.3s;
+        }
+        
+        .collapsible.open .collapsible-icon {
+            transform: rotate(180deg);
+        }
+        
+        .collapsible-content {
+            padding: 1.25rem;
+            display: none;
+        }
+        
+        .collapsible.open .collapsible-content {
+            display: block;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Formula visualization */
+        .formula {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .formula-item {
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .formula-item-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        
+        .formula-item-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .formula-arrow {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Search */
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: border-color 0.2s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+        }
+        
+        /* Footer */
+        .dashboard-meta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.75rem;
+            z-index: 100;
+        }
+        
+        .meta-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .meta-label {
+            color: var(--text-muted);
+        }
+        
+        .meta-value {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+        
+        .tooltip-text {
+            visibility: hidden;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Print styles */
+        @media print {
+            .nav, .theme-toggle, .dashboard-meta {
+                display: none;
+            }
+            
+            main {
+                margin-top: 0;
+            }
+            
+            .hero {
+                background: var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(120deg, rgba(99, 102, 241, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+        }
+        
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s;
+            z-index: 99;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .back-to-top.visible {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-brand">🧠 Mindset Dashboard</div>
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#mindsets">Mindsets</a>
+            <a href="#levers">Levers</a>
+            <a href="#feedback">Feedback</a>
+            <a href="#action">Action Plan</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <header class="hero" id="top">
+            <div class="hero-content">
+                <h1>Mindset Changes Everything</h1>
+                <p class="hero-subtitle">The Art + Science of Success in Business and in Life</p>
+                
+                <div class="hero-speaker">
+                    <div class="hero-speaker-avatar">EM</div>
+                    <div class="hero-speaker-info">
+                        <div class="hero-speaker-name">Dr. Eve Meceda</div>
+                        <div class="hero-speaker-title">Research Psychologist • Vistage Speaker</div>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">25+</div>
+                        <div class="hero-stat-label">Years Experience</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">1,800+</div>
+                        <div class="hero-stat-label">Presentations</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">18</div>
+                        <div class="hero-stat-label">Countries</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">6</div>
+                        <div class="hero-stat-label">Continents</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- TL;DR Section -->
+            <div class="tldr" id="overview">
+                <div class="tldr-header">
+                    <span class="tldr-badge">TL;DR</span>
+                    <span class="tldr-title">Executive Summary</span>
+                </div>
+                <div class="tldr-content">
+                    <strong>Mindset is the single biggest lever for improving performance.</strong> Research shows <span class="highlight">fair & accurate informal feedback → +39.1% performance</span> and <span class="highlight">risk-taking/experimentation → +38.9% performance</span>. The core shift: move from a <strong>fixed mindset</strong> (proving yourself) to a <strong>growth mindset</strong> (improving yourself). Three levers drive this shift: <strong>Education</strong> (teach the concepts), <strong>Feedback</strong> (give and receive it better), and <strong>Experimentation</strong> (embrace appropriate failure). Your job is NOT to prove yourself—it's to <strong>IMPROVE</strong> yourself.
+                </div>
+            </div>
+
+            <!-- Why Now Section -->
+            <section class="section" id="why-now">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h2 class="section-title">Why Mindset Matters NOW</h2>
+                </div>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">📈 Performance</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">The research is clear: growth mindset cultures significantly outperform fixed mindset cultures. This is the foundational, enduring reason.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">🌊 Uncertainty</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">"I have never seen such consistency around one pain point as uncertainty." Tariffs, geopolitics, constant change—everyone's on edge.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">🤖 AI/Disruption</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">"This is as normal and recognizable as the world will ever look again." Species-level disruption is coming. Mindset is our only tool.</p>
+                    </div>
+                </div>
+                
+                <!-- The 211 Degrees Metaphor -->
+                <div class="thermometer" style="margin-top: 1.5rem;">
+                    <h3 style="margin-bottom: 0.5rem;">The "211 Degrees" Problem</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Water boils at 212°F. Everyone's operating at 211° all the time.</p>
+                    <div class="thermometer-visual">
+                        <div>
+                            <div class="temp-bar current">
+                                <div class="temp-fill"></div>
+                            </div>
+                            <div class="temp-label">Current State</div>
+                            <div class="temp-value">211°F</div>
+                        </div>
+                        <div>
+                            <div class="temp-bar boiling">
+                                <div class="temp-fill"></div>
+                            </div>
+                            <div class="temp-label">Boiling Point</div>
+                            <div class="temp-value">212°F</div>
+                        </div>
+                    </div>
+                    <p style="font-style: italic; color: var(--text-secondary); font-size: 0.875rem;">"It only takes a degree to tip into boiling. People get so angry, offended, frustrated, and afraid so quickly."</p>
+                </div>
+            </section>
+
+            <!-- The Formula -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h2 class="section-title">The Success Formula</h2>
+                </div>
+                
+                <div class="formula">
+                    <div class="formula-item">
+                        <div class="formula-item-label">Foundation</div>
+                        <div class="formula-item-value">Beliefs</div>
+                    </div>
+                    <div class="formula-arrow">→</div>
+                    <div class="formula-item">
+                        <div class="formula-item-label">Actions</div>
+                        <div class="formula-item-value">Behaviors</div>
+                    </div>
+                    <div class="formula-arrow">→</div>
+                    <div class="formula-item">
+                        <div class="formula-item-label">Results</div>
+                        <div class="formula-item-value">Outcomes</div>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary);">
+                    <strong>Mindset</strong> = Your beliefs about how the world works (especially how people work) that shape your behaviors and determine your outcomes.
+                </p>
+            </section>
+
+            <!-- Mindset Comparison -->
+            <section class="section" id="mindsets">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <h2 class="section-title">Fixed vs. Growth Mindset</h2>
+                </div>
+                
+                <div class="mindset-compare">
+                    <!-- Fixed Mindset -->
+                    <div class="mindset-card fixed">
+                        <div class="mindset-card-header">
+                            <div class="mindset-icon">🔒</div>
+                            <div>
+                                <h3 class="mindset-card-title">Fixed Mindset</h3>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">The less helpful one</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mindset-belief">
+                            <div class="mindset-belief-label">Core Belief</div>
+                            "Intelligence and skills are inherent traits. You either have them, or you don't."
+                        </div>
+                        
+                        <p style="font-weight: 600; margin-bottom: 0.75rem;">Your Job: PROVE yourself</p>
+                        
+                        <ul class="behavior-list">
+                            <li class="behavior-item">
+                                <span class="behavior-number">1</span>
+                                <div class="behavior-content">
+                                    <h4>Look Smart</h4>
+                                    <p>Intense desire to prove you're right, all the time, about everything</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">2</span>
+                                <div class="behavior-content">
+                                    <h4>Avoid Challenges</h4>
+                                    <p>"Stay in your box with your cards" - only do what you know you can nail</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">3</span>
+                                <div class="behavior-content">
+                                    <h4>Give Up Easily</h4>
+                                    <p>"Quitting is way better than failing" - quitting is ME deciding</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">4</span>
+                                <div class="behavior-content">
+                                    <h4>Disdain Effort</h4>
+                                    <p>"Effort is for people who aren't good at stuff" - struggle = no card</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">5</span>
+                                <div class="behavior-content">
+                                    <h4>Fear Feedback</h4>
+                                    <p>Terrified of hearing "you're not enough" - and that can't be fixed</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">6</span>
+                                <div class="behavior-content">
+                                    <h4>Resent Others</h4>
+                                    <p>Schadenfreude - if you have more, I have less (scarcity mindset)</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div style="background: var(--fixed-secondary); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <strong style="color: var(--fixed-primary);">Outcome:</strong>
+                            <p style="font-size: 0.875rem; margin-top: 0.25rem;">Plateau at a certain point. "So busy proving how awesome I already am, I never find out how awesome I actually could be."</p>
+                        </div>
+                    </div>
+                    
+                    <!-- VS -->
+                    <div class="mindset-vs">
+                        <div class="vs-circle">VS</div>
+                    </div>
+                    
+                    <!-- Growth Mindset -->
+                    <div class="mindset-card growth">
+                        <div class="mindset-card-header">
+                            <div class="mindset-icon">🌱</div>
+                            <div>
+                                <h3 class="mindset-card-title">Growth Mindset</h3>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">The more helpful one</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mindset-belief">
+                            <div class="mindset-belief-label">Core Belief</div>
+                            "Intelligence and skills are largely the result of learning and effort."
+                        </div>
+                        
+                        <p style="font-weight: 600; margin-bottom: 0.75rem;">Your Job: IMPROVE yourself</p>
+                        
+                        <ul class="behavior-list">
+                            <li class="behavior-item">
+                                <span class="behavior-number">1</span>
+                                <div class="behavior-content">
+                                    <h4>Desire to Learn</h4>
+                                    <p>Do whatever it takes to get better - accelerate progress toward your limit</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">2</span>
+                                <div class="behavior-content">
+                                    <h4>Love Challenges</h4>
+                                    <p>"I can do anything until proven otherwise" - that's an empirical question</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">3</span>
+                                <div class="behavior-content">
+                                    <h4>Keep Trying</h4>
+                                    <p>"Fail better each time in pursuit of awesome" - never fail = not pushing</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">4</span>
+                                <div class="behavior-content">
+                                    <h4>Embrace Effort</h4>
+                                    <p>"Full preparation, full effort - left it on the field" - that's all we ask</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">5</span>
+                                <div class="behavior-content">
+                                    <h4>Leverage Feedback</h4>
+                                    <p>"It's like cheating in the best possible sense" - you gave me the answer!</p>
+                                </div>
+                            </li>
+                            <li class="behavior-item">
+                                <span class="behavior-number">6</span>
+                                <div class="behavior-content">
+                                    <h4>Inspired by Others</h4>
+                                    <p>Draft off their success - what are they doing that I'm not?</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div style="background: var(--growth-secondary); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <strong style="color: var(--growth-primary);">Outcome:</strong>
+                            <p style="font-size: 0.875rem; margin-top: 0.25rem;">Continuous improvement. "Fail their way right on past the fixed mindset plateau."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Clarification -->
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h4 style="margin-bottom: 0.75rem;">💡 Key Clarification: It's a Continuum</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Mindset is NOT binary (fixed OR growth). We're all somewhere on a continuum, and can be more fixed in one area and more growth in another. Most people report feeling more fixed at home/personal life and more growth at work. <strong>Both nature and nurture play a role</strong> - which is good news, because we can leverage the nurture part.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Research Data -->
+            <section class="section" id="research">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                    </div>
+                    <h2 class="section-title">The Research: Performance Impact</h2>
+                </div>
+                
+                <div class="card">
+                    <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        From a large-scale Performance Management study analyzing <strong>106 variables</strong>. These were the top two drivers of performance, controlling for everything else:
+                    </p>
+                    
+                    <div class="research-bar">
+                        <div class="research-bar-header">
+                            <span class="research-bar-label">Fair & Accurate Informal Feedback</span>
+                            <span class="research-bar-value">+39.1%</span>
+                        </div>
+                        <div class="research-bar-track">
+                            <div class="research-bar-fill feedback"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="research-bar">
+                        <div class="research-bar-header">
+                            <span class="research-bar-label">Risk-Taking / Experimentation</span>
+                            <span class="research-bar-value">+38.9%</span>
+                        </div>
+                        <div class="research-bar-track">
+                            <div class="research-bar-fill experimentation"></div>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem; font-style: italic;">
+                        "Add these numbers up over an entire employee population - we're talking a lot of cash."
+                    </p>
+                </div>
+            </section>
+
+            <!-- Quote Block -->
+            <div class="quote-block">
+                <div class="quote-text">"Your job is NOT to prove yourself — it's to IMPROVE yourself."</div>
+                <div class="quote-attribution">— Dr. Eve Meceda</div>
+            </div>
+
+            <!-- Three Levers -->
+            <section class="section" id="levers">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"/></svg>
+                    </div>
+                    <h2 class="section-title">The Three Levers of Mindset Shift</h2>
+                </div>
+                
+                <!-- Lever 1: Education -->
+                <div class="lever-card open" id="lever-education">
+                    <div class="lever-header" onclick="toggleLever('lever-education')">
+                        <div class="lever-number">1</div>
+                        <div class="lever-info">
+                            <div class="lever-title">Education</div>
+                            <div class="lever-subtitle">"Probably the #1 thing you can do"</div>
+                        </div>
+                        <div class="lever-toggle">
+                            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                        </div>
+                    </div>
+                    <div class="lever-content">
+                        <p style="margin-bottom: 1rem;">You've got to teach people mindset. This is the #1 thing you can do to shift somebody's mindset.</p>
+                        
+                        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>Critical Point:</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">"Mindset is not something where you can sneak up behind somebody's back and change their mindset without them knowing. It doesn't work that way."</p>
+                        </div>
+                        
+                        <h4 style="margin: 1rem 0 0.5rem;">For Resistant (Fixed Mindset) People:</h4>
+                        <ul style="list-style: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                                <strong>The Reverse Ask:</strong> "Can I tell you about fixed/growth, and then YOU tell ME where you see ME struggle with fixed mindset?" (They're happy to tell you what you're bad at)
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>The Shared Care Object:</strong> Focus on something you both care about (company, team, child) - "How do we create growth for THIS thing we both care about?"
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Lever 2: Feedback -->
+                <div class="lever-card" id="lever-feedback">
+                    <div class="lever-header" onclick="toggleLever('lever-feedback')">
+                        <div class="lever-number">2</div>
+                        <div class="lever-info">
+                            <div class="lever-title">Feedback</div>
+                            <div class="lever-subtitle">+39.1% performance impact</div>
+                        </div>
+                        <div class="lever-toggle">
+                            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                        </div>
+                    </div>
+                    <div class="lever-content">
+                        <p style="margin-bottom: 1rem;"><strong>Note:</strong> Feedback includes BOTH praise AND criticism. Everything here applies to both, at work and at home.</p>
+                        
+                        <h4 style="margin-bottom: 0.75rem;">Giving Feedback Better: 4 Principles</h4>
+                        <div class="grid-2" style="margin-bottom: 1.5rem;">
+                            <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                                <strong>1. Ask for Permission</strong>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">"Is now good, or would later work better?" For leaders, it's really about timing - let them get a Snickers first if needed.</p>
+                            </div>
+                            <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                                <strong>2. Say It How THEY Can Hear It</strong>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">Like "love languages" but for feedback. Learn their preferences.</p>
+                            </div>
+                            <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                                <strong>3. Focus on Behavior</strong>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">Never about the person - always about behavior. Behaviors can change.</p>
+                            </div>
+                            <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                                <strong>4. Just Do It</strong>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">Don't delay. As close to the behavior as possible (after cooling off if needed).</p>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-bottom: 0.75rem;">Receiving Feedback Better: 2 Responses</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px; background: var(--growth-bg); border: 2px solid var(--growth-primary); padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🙏</div>
+                                <strong style="color: var(--growth-primary);">"Thank you"</strong>
+                            </div>
+                            <div style="flex: 1; min-width: 200px; background: var(--growth-bg); border: 2px solid var(--growth-primary); padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤔</div>
+                                <strong style="color: var(--growth-primary);">"Tell me more"</strong>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary);">
+                            <strong>Bonus tip:</strong> "If it's hysterical, it's historical" - give grace for others' emotional reactions. Their energy may not be about you.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Lever 3: Experimentation -->
+                <div class="lever-card" id="lever-experimentation">
+                    <div class="lever-header" onclick="toggleLever('lever-experimentation')">
+                        <div class="lever-number">3</div>
+                        <div class="lever-info">
+                            <div class="lever-title">Experimentation</div>
+                            <div class="lever-subtitle">+38.9% performance impact (originally called "Risk-Taking")</div>
+                        </div>
+                        <div class="lever-toggle">
+                            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                        </div>
+                    </div>
+                    <div class="lever-content">
+                        <p style="margin-bottom: 1rem;">Embrace <strong>appropriate</strong> experimentation, risk, and failure. Not all failure is good - but we need to de-stigmatize the RIGHT kind.</p>
+                        
+                        <h4 style="margin-bottom: 0.75rem;">The Philosophy</h4>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                            <span class="benefit-tag">Fail Early</span>
+                            <span class="benefit-tag">Fail Often</span>
+                            <span class="benefit-tag">Fail Cheap</span>
+                            <span class="benefit-tag">Fail Better Each Time</span>
+                            <span class="benefit-tag">In Pursuit of Awesome</span>
+                        </div>
+                        
+                        <h4 style="margin-bottom: 0.75rem;">The Cultural Shift</h4>
+                        <div class="grid-2" style="margin-bottom: 1.5rem;">
+                            <div style="background: var(--fixed-bg); border: 2px solid var(--fixed-primary); padding: 1rem; border-radius: 8px;">
+                                <div style="font-weight: 700; color: var(--fixed-primary); margin-bottom: 0.5rem;">❌ "No, because..."</div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">"We tried that before... It's not how we do things... It's too expensive... People are afraid..."</p>
+                            </div>
+                            <div style="background: var(--growth-bg); border: 2px solid var(--growth-primary); padding: 1rem; border-radius: 8px;">
+                                <div style="font-weight: 700; color: var(--growth-primary); margin-bottom: 0.5rem;">✅ "Yes, if..."</div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary);">"Yes, we could do that IF..." Starts from possibility. Under what conditions could this work?</p>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-bottom: 0.75rem;">The Weekly Question (Sarah Blakely's Dad)</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                            Ask this in leadership meetings, team meetings, with your kids - YOU go first:
+                        </p>
+                        <div class="collapsible open">
+                            <div class="collapsible-header" onclick="toggleCollapsible(this.parentElement)">
+                                <span class="collapsible-title">📋 Three Ways to Ask</span>
+                                <span class="collapsible-icon">▼</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <ol style="padding-left: 1.25rem;">
+                                    <li style="margin-bottom: 0.75rem;"><strong>"What did you fail at this week?"</strong> (The Sarah Blakely version)</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong>"What mistakes did you make this week? What did you learn?"</strong> (With learning emphasis)</li>
+                                    <li><strong>"If you had one do-over, what would it be? What would you do differently?"</strong> (The positive frame - like a mulligan)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feedback Preferences -->
+            <section class="section" id="feedback">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg>
+                    </div>
+                    <h2 class="section-title">Feedback Preferences Framework</h2>
+                </div>
+                
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    "We don't all have the same preferences when receiving feedback. Once you understand someone's preferences, these conversations go SO much better."
+                </p>
+                
+                <div class="grid-2">
+                    <div class="preference-category">
+                        <div class="preference-category-header">
+                            <div class="preference-category-icon">⏰</div>
+                            <div class="preference-category-title">Timing</div>
+                        </div>
+                        <ul class="preference-questions">
+                            <li>Best time of day? Morning, mid-day, or end of day?</li>
+                            <li>As it's happening, immediately after, or later?</li>
+                            <li>Spontaneous or scheduled in advance?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="preference-category">
+                        <div class="preference-category-header">
+                            <div class="preference-category-icon">⚖️</div>
+                            <div class="preference-category-title">Praise vs. Criticism</div>
+                        </div>
+                        <ul class="preference-questions">
+                            <li>Different approach for praise vs. criticism?</li>
+                            <li>Sandwich method, balanced, or "just the constructive"?</li>
+                            <li>What ratio works best for you?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="preference-category">
+                        <div class="preference-category-header">
+                            <div class="preference-category-icon">📬</div>
+                            <div class="preference-category-title">Delivery Method</div>
+                        </div>
+                        <ul class="preference-questions">
+                            <li>Verbal or written?</li>
+                            <li>In-person or remote?</li>
+                            <li>Public or private? (Does it depend?)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="preference-category">
+                        <div class="preference-category-header">
+                            <div class="preference-category-icon">🏠</div>
+                            <div class="preference-category-title">Personal vs. Professional</div>
+                        </div>
+                        <ul class="preference-questions">
+                            <li>Same preferences at work and home?</li>
+                            <li>Different by relationship type?</li>
+                            <li>"Do not cross the streams"?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="preference-category">
+                        <div class="preference-category-header">
+                            <div class="preference-category-icon">📊</div>
+                            <div class="preference-category-title">Level of Detail</div>
+                        </div>
+                        <ul class="preference-questions">
+                            <li>Paragraph version (full context, examples, data)?</li>
+                            <li>Or bullet points (just the highlights)?</li>
+                            <li>How important are specific examples?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="preference-category">
+                        <div class="preference-category-header">
+                            <div class="preference-category-icon">💭</div>
+                            <div class="preference-category-title">Emotions</div>
+                        </div>
+                        <ul class="preference-questions">
+                            <li>How important is tone?</li>
+                            <li>Include emotional context or "just the facts"?</li>
+                            <li>Does emotion make you shut down?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top: 1.5rem; border: 2px solid var(--warning);">
+                    <h4 style="color: var(--warning); margin-bottom: 0.5rem;">⚠️ Don't Forget Pet Peeves</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Things that shut you down completely. "Don't even try that with me because it is NOT going to go well." Make sure to identify and share these too.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Benefits of Growth Mindset Culture -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h2 class="section-title">Benefits of a Growth Mindset Culture</h2>
+                </div>
+                
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    "If everybody in your company - top to bottom - understood growth mindset, what would be better?"
+                </p>
+                
+                <div class="benefits-cloud">
+                    <span class="benefit-tag">💡 Innovation</span>
+                    <span class="benefit-tag">🎯 Out-of-Box Thinking</span>
+                    <span class="benefit-tag">🌟 Improved Culture</span>
+                    <span class="benefit-tag">💰 Profitability</span>
+                    <span class="benefit-tag">😊 Job Satisfaction</span>
+                    <span class="benefit-tag">🔋 Decreased Burnout</span>
+                    <span class="benefit-tag">📚 More Lessons Learned</span>
+                    <span class="benefit-tag">🤝 Happy Clients</span>
+                    <span class="benefit-tag">🎯 Greater Focus</span>
+                    <span class="benefit-tag">👥 Better Teamwork</span>
+                    <span class="benefit-tag">💬 Better Communication</span>
+                    <span class="benefit-tag">⚡ Fail Fast</span>
+                    <span class="benefit-tag">📈 Enterprise Value</span>
+                    <span class="benefit-tag">🌱 Growth</span>
+                    <span class="benefit-tag">🔒 Better Retention</span>
+                    <span class="benefit-tag">🎭 Less Drama</span>
+                    <span class="benefit-tag">🎉 More Fun!</span>
+                </div>
+            </section>
+
+            <!-- Action Plan -->
+            <section class="section" id="action">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h2 class="section-title">Immediate Action Plan</h2>
+                </div>
+                
+                <ul class="action-list">
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <div class="action-content">
+                            <div class="action-title">Complete the Self-Assessment</div>
+                            <div class="action-desc">Which of the 6 fixed mindset behaviors are YOUR challenges? How do they create problems? What will you do about it?</div>
+                            <div class="action-timeline">This Week</div>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <div class="action-content">
+                            <div class="action-title">Start Asking the Weekly Question</div>
+                            <div class="action-desc">"What did you fail at this week?" or "If you had one do-over?" - YOU go first. Ask in meetings, with family.</div>
+                            <div class="action-timeline">Next Meeting</div>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <div class="action-content">
+                            <div class="action-title">Have Feedback Preference Conversations</div>
+                            <div class="action-desc">Learn how your direct reports prefer to receive feedback. Share your own preferences. Create a reference document.</div>
+                            <div class="action-timeline">This Month</div>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <div class="action-content">
+                            <div class="action-title">Audit for "No, Because..."</div>
+                            <div class="action-desc">Notice when you or your team default to "No, because..." and practice shifting to "Yes, if..."</div>
+                            <div class="action-timeline">Ongoing</div>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <div class="action-content">
+                            <div class="action-title">Plan Mindset Education for Your Team</div>
+                            <div class="action-desc">How will you share these concepts? Internal presentation, bring in Dr. Meceda, book club, online course?</div>
+                            <div class="action-timeline">This Quarter</div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Quote Block 2 -->
+            <div class="quote-block" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+                <div class="quote-text">"Mindset is a choice. Choose wisely."</div>
+                <div class="quote-attribution">The consequences of living left vs. right of center on the mindset continuum are significant.</div>
+            </div>
+
+            <!-- Speaker Bio -->
+            <section class="section" id="speaker">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <h2 class="section-title">About Dr. Eve Meceda</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="speaker-bio">
+                        <div class="speaker-avatar">EM</div>
+                        <div class="speaker-details">
+                            <h3>Dr. Eve Meceda</h3>
+                            <p style="color: var(--text-secondary);">Research Psychologist • PhD in Social Psychology</p>
+                            
+                            <div class="speaker-credentials">
+                                <span class="credential-badge">🏆 Vistage Speaker of the Year 2016</span>
+                                <span class="credential-badge">⭐ Lifetime Achievement Award 2021</span>
+                                <span class="credential-badge">🌟 2024 Top Performer</span>
+                                <span class="credential-badge">🌟 2023 Top Performer</span>
+                                <span class="credential-badge">🌟 2022 Top Performer</span>
+                            </div>
+                            
+                            <p style="margin: 1rem 0; color: var(--text-secondary);">
+                                Dr. Eve Meceda has spent 25+ years helping organizations around the world significantly improve both individual and organizational performance. Her current work focuses on <strong>growth mindset</strong>, <strong>sustainable habit change</strong>, and <strong>mastering difficult conversations</strong>.
+                            </p>
+                            
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                                She has delivered 1,800+ speaking engagements in 18 countries on 6 continents... "or 7 if you include a recent chat with penguins in Antarctica." Based in Superior, CO (Boulder area).
+                            </p>
+                            
+                            <div class="speaker-contact">
+                                <div class="contact-item">
+                                    📧 <a href="mailto:eve@evemeceda.com">eve@evemeceda.com</a>
+                                </div>
+                                <div class="contact-item">
+                                    📱 720.273.4121
+                                </div>
+                                <div class="contact-item">
+                                    🌐 <a href="https://www.evemeceda.com" target="_blank" rel="noopener">evemeceda.com</a>
+                                </div>
+                                <div class="contact-item">
+                                    📚 <a href="https://www.mindset-course.com" target="_blank" rel="noopener">mindset-course.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Three Programs -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+                    </div>
+                    <h2 class="section-title">Dr. Meceda's Three Programs</h2>
+                </div>
+                
+                <div class="grid-3">
+                    <div class="card" style="border-top: 4px solid var(--primary);">
+                        <h4 style="margin-bottom: 0.5rem;">🧠 Mindset Changes Everything</h4>
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">The Art + Science of Success in Business and in Life</p>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">836 presentations • Virtual/Hybrid OK</div>
+                    </div>
+                    
+                    <div class="card" style="border-top: 4px solid var(--success);">
+                        <h4 style="margin-bottom: 0.5rem;">🔄 Unlocking the Power of Habits</h4>
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">How to Start, Stop, Sustain, or Change Almost Anything</p>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">44 presentations • In-person only (one component)</div>
+                    </div>
+                    
+                    <div class="card" style="border-top: 4px solid var(--secondary);">
+                        <h4 style="margin-bottom: 0.5rem;">💬 Mastering Difficult Conversations</h4>
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Navigate the tough talks that matter most</p>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">10 presentations • Virtual/Hybrid OK</div>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top: 1.5rem; background: var(--bg-secondary);">
+                    <h4 style="margin-bottom: 0.75rem;">💼 Engagement Model</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        <strong>Ideal:</strong> All-hands in the morning + Leadership team workshop in the afternoon (2-3 hours for organizational/cultural/systemic changes).
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">
+                        <strong>Pricing:</strong> "The more people you give me, the better. Cost isn't any different if I have 1,000 people or 10 people."
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.75rem; font-style: italic;">
+                        "I don't like long consulting engagements - I find them boring. My job is to give you everything you need and then get out of your way."
+                    </p>
+                </div>
+            </section>
+
+            <!-- Session Info -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                    </div>
+                    <h2 class="section-title">Session Information</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="grid-2">
+                        <div>
+                            <p style="font-size: 0.875rem; color: var(--text-muted);">Date</p>
+                            <p style="font-weight: 600;">January 13, 2026</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.875rem; color: var(--text-muted);">Location</p>
+                            <p style="font-weight: 600;">Memphis, Tennessee</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.875rem; color: var(--text-muted);">Format</p>
+                            <p style="font-weight: 600;">Vistage Speaker Program</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.875rem; color: var(--text-muted);">Chair</p>
+                            <p style="font-weight: 600;">Carey Folk</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="dashboard-meta">
+        <div class="meta-item">
+            <span class="meta-label">Version:</span>
+            <span class="meta-value">1.0</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Generated:</span>
+            <span class="meta-value">2026-01-16</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Model:</span>
+            <span class="meta-value">Claude Opus 4.5 (Anthropic)</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Source:</span>
+            <span class="meta-value">Dr. Eve Meceda - Vistage Session Jan 13, 2026</span>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        // Initialize theme
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+        
+        // Lever toggles
+        function toggleLever(id) {
+            const lever = document.getElementById(id);
+            lever.classList.toggle('open');
+        }
+        
+        // Collapsible toggles
+        function toggleCollapsible(element) {
+            element.classList.toggle('open');
+        }
+        
+        // Action checkbox toggle
+        function toggleCheckbox(element) {
+            element.classList.toggle('checked');
+        }
+        
+        // Back to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 500) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Animate research bars on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width || entry.target.style.width;
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.research-bar-fill').forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
